@@ -1,4 +1,5 @@
 import turtle
+import tkinter
 import datetime
 import math
 
@@ -7,7 +8,9 @@ import math
 screen = turtle.Screen()
 screen.bgcolor("white")
 screen.setup(width=600, height=600)
-screen.title("SLTC-BAIT Batch1 Clock")
+screen.title("SLTC-BAIT BATCH1 CLOCK")
+img = tkinter.Image("photo", file="clock.png")
+turtle._Screen._root.iconphoto(True, img)
 screen.tracer(0)
 
 # Very basic clock face
@@ -83,15 +86,15 @@ def draw_hour_labels():
 def update_clock():
     now = datetime.datetime.now()
     # Angles for each hand 
-    hour_angle = (now.hour % 12) * 30 + now.minute / 2 + now.second / 120 + now.microsecond / 7200000 # Consider the minutes and seconds here
+    hour_angle = (now.hour % 12) * 30 + now.minute / 2 # Consider the minutes here
     # minute_angle = now.minute * 6 
-    minute_angle = now.minute * 6 + now.second * 0.1 + now.microsecond / 600000 # Consider the seconds here
-    second_angle = now.second * 6 + now.microsecond * 0.000006 # Consider the microseconds here
+    minute_angle = now.minute * 6 + now.second * 0.1 # Consider the seconds here
+    second_angle = now.second * 6 
 
     # Rotate the hands
-    hour_hand.setheading(95 - hour_angle)
-    minute_hand.setheading(95 - minute_angle)
-    second_hand.setheading(95 - second_angle)
+    hour_hand.setheading(90 - hour_angle)
+    minute_hand.setheading(90 - minute_angle)
+    second_hand.setheading(90 - second_angle)
 
     # Update the date label display
     date_turtle.clear()  # Clear previous date
